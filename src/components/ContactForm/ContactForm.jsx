@@ -9,9 +9,7 @@ import css from './ContactForm.module.css';
 
 export default function ContactForm({initialValues, onSubmit}) {
   const id = useId();
-
-  // function handleSubmit() {}
-
+  
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className={css['contact-form']}>

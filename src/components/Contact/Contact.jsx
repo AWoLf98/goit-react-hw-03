@@ -2,9 +2,9 @@ import css from './Contact.module.css';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { CgSmartphone } from 'react-icons/cg';
 
-export default function Contact({ id, name, number }) {
+export default function Contact({ contact: {id, name, number}, onDelete }) {
   return (
-    <li className={css['contact-box']} key={id}>
+    <li className={css['contact-box']}>
       <div className={css['contact-info']}>
         <div className={css['contact-info-item']}>
           <FaUserAstronaut />
@@ -15,7 +15,7 @@ export default function Contact({ id, name, number }) {
           <p>{number}</p>
         </div>
       </div>
-      <button type='button'>Delete</button>
+      <button type='button' onClick={() => onDelete(id)}>Delete</button>
     </li>
   );
 }
