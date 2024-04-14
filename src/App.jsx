@@ -1,26 +1,45 @@
-import { useState } from 'react'
 import 'modern-normalize';
-import './App.css'
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { useState } from 'react';
+import { nanoid } from 'nanoid';
+import ContactForm from './components/ContactForm/ContactForm';
+import SearchBox from './components/SearchBox/SearchBox';
+import ContactList from './components/ContactList/ContactList';
+
+import contactData from './data/contacts.json';
+
+// console.log(contactsData);
+
+export default function App() {
+  const initialValues = {
+    name: "",
+    number: ""
+  };
+
+  const [filter, setFilter] = useState('');
+
+  const contacts = contactData.filter(el =>
+    el.name.toLowerCase().trim().includes(filter.toLowerCase().trim())
+  );
+
+  function handleChange(evt) {
+    setFilter(evt.target.value.trim())
+  }
+
+  function handleSubmit({ name, number }, actions) {
+    const id = nanoid();
+    contacts.push({id, name, number});
+    console.log(contacts);
+    actions.resetForm();
+  }
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Phonebook</h1>
+      <ContactForm initialValues={initialValues} onSubmit={handleSubmit}/>
+      <SearchBox value={filter} onChange={handleChange} />
+      <ContactList contacts={contacts} />
     </>
-  )
+  );
 }
-
-export default App
