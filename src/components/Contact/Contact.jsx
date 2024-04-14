@@ -1,4 +1,5 @@
 import css from './Contact.module.css';
+
 import { FaUserAstronaut } from 'react-icons/fa';
 import { CgSmartphone } from 'react-icons/cg';
 

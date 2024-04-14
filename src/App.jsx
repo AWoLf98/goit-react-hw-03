@@ -1,13 +1,12 @@
 import 'modern-normalize';
 import './App.css';
 
-import { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
 import ContactForm from './components/ContactForm/ContactForm';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactList from './components/ContactList/ContactList';
 
-// console.log(contactsData);
+import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 export default function App() {
   const initialValues = {
